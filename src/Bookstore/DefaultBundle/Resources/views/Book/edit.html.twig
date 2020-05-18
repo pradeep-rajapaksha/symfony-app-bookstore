@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h4 class="mt-5 mb-5">Book Edit
+        <a href="{{ path('book') }}" class="float-right btn btn-sm btn-secondary">Back to the list</a>
+    </h4>
+
+    {{ form(edit_form) }}
+
+    <!-- {{ form(delete_form) }} -->
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h4 class="mt-5 mb-5">Book creation 
+        <a href="{{ path('category') }}" class="float-right btn btn-sm btn-secondary">Back to the list</a>
+    </h4>
+    {{ form(form) }}
+
+{% endblock %}

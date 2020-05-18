@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h4 class="mt-5 mb-5">Book
+        <a href="{{ path('book') }}" class="float-right btn btn-sm btn-secondary">Back to the list</a>
+    </h4>
+
+    <table class="record_properties table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ entity.author }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ entity.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Publication</th>
+                <td>{{ entity.publication|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Publisher</th>
+                <td>{{ entity.publisher }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ entity.price }}</td>
+            </tr>
+            <tr>
+                <th>Availability</th>
+                <td>{{ entity.availability }}</td>
+            </tr>
+            <tr>
+                <th>Shelf</th>
+                <td>{{ entity.shelf }}</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <a href="{{ path('book_edit', { 'id': entity.id }) }}" class="btn btn-secondary mb-2">Edit</a>
+                    {{ form(delete_form) }}                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

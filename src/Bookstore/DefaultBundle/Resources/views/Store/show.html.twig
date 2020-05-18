@@ -1,0 +1,81 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<div class="container mb-5"></div>
+<div class="container">
+
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-5 border-right">
+                <a href="#"><img src="{{ asset('book-covers/book-cover-page-test.png') }}" class="img-fluid mx-auto pt-3 pl-3" style="width: 100%;"></a>
+            </div>
+
+            <div class="col-sm-7">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">{{ entity.title }}</h3>
+                    
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">USD </span><span class="num">{{ entity.price | number_format(2, '.', ',') }}</span>
+                        </span>
+                        <span>/per kg</span>
+                    </p>
+                    <dl class="item-property">
+                        <dt>Auther</dt>
+                        <dd>
+                            <p>{{ entity.author }}</p>
+                        </dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dt>Publisher</dt>
+                        <dd>{{ entity.publisher }} ({{ entity.publication | date('Y-m-d') }})</dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dt>ISBN</dt>
+                        <dd>{{ entity.isbn }}</dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dt>Category</dt>
+                        <dd>{{ entity.category.name }}</dd>
+                    </dl>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="param param-inline">
+                                <dt>Quantity: </dt>
+                                <dd>
+                                    <select class="form-control form-control-sm" id="quantity" name="quantity" style="width:70px;">
+                                        {% for i in 1..10 %}
+                                            <option>{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a> -->
+                    <form action="{{ path('cart_add',{'id': entity.id}) }}" method="POST">
+                        <input type="hidden" name="qty" id="qty" value="1" />
+                        <button type="submit" class="btn btn-lg btn-outline-primary text-uppercase"> <i
+                            class="fas fa-shopping-cart"></i> Add to cart </button>
+                            <a href="{{ path('store') }}" class="btn btn-lg btn-secondary text-uppercase"> Cancel </a>
+                    </form>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("quantity").addEventListener("change", myFunction);
+    function myFunction() {
+        var select = document.getElementById("quantity");
+        // alert(select.value);
+        document.getElementById("qty").value = select.value;
+    }
+</script>
+
+{% endblock %}

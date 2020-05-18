@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+            
+            <h4 class="mt-5 mb-5">Purchase Invoice <span class="float-right">Order #{{ orderId }}</span></h4>
+            
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <td>Book Title</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                        <td class="text-right">Sub Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr>
+                        <td><a href="{{ path('book_show',{'id': item.id}) }}">{{ item.name }}</a></td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.price | number_format(2,'.',',') }}</td>
+                        <td data-th="Subtotal" class="text-right">
+                            ${{ (item.quantity * item.price) | number_format(2,'.',',') }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Discount {{ discount }} %</td>
+                        <td class="text-right"> {{ (netTotal * discount / 100) | number_format(2,'.',',') }} </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Total</th>
+                        <td class="text-right">{{ total }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <td><a href="{{ path('homepage') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Back to
+                Home</a>
+    </div>
+</div>
+{% endblock %}
