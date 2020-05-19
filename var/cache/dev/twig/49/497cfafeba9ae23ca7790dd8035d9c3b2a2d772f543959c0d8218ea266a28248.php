@@ -87,7 +87,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
             // line 31
             echo "                <ul class=\"navbar-nav mr-auto\">
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>
+                        <a class=\"nav-link\" href=\"/store/book\">Home <span class=\"sr-only\">(current)</span></a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"/store/book\">Books</a>
@@ -119,15 +119,15 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
                     </li> -->
                 </ul>
                 <span class=\"form-inline my-2 my-lg-0\">
-                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                     <a class=\"nav-link active\" href=\"";
-            // line 61
+            // line 60
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_index");
             echo "\">Cart 
                         <span class=\"badge\">\$";
-            // line 62
-            (( !twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "session", [], "any", false, false, false, 62), "get", [0 => "totalPrice"], "method", false, false, false, 62)) ? (print ("0")) : (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "session", [], "any", false, false, false, 62), "get", [0 => "totalPrice"], "method", false, false, false, 62), "html", null, true))));
+            // line 61
+            (( !twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 61, $this->source); })()), "session", [], "any", false, false, false, 61), "get", [0 => "totalPrice"], "method", false, false, false, 61)) ? (print ("0")) : (print (twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 61, $this->source); })()), "session", [], "any", false, false, false, 61), "get", [0 => "totalPrice"], "method", false, false, false, 61), "html", null, true))));
             echo "</span></a>
+                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                 </span>
             ";
         }
@@ -257,7 +257,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
 
     public function getDebugInfo()
     {
-        return array (  231 => 86,  213 => 72,  195 => 16,  176 => 10,  163 => 87,  161 => 86,  146 => 73,  144 => 72,  135 => 65,  129 => 62,  125 => 61,  110 => 48,  104 => 45,  88 => 31,  86 => 30,  69 => 17,  67 => 16,  58 => 10,  47 => 1,);
+        return array (  231 => 86,  213 => 72,  195 => 16,  176 => 10,  163 => 87,  161 => 86,  146 => 73,  144 => 72,  135 => 65,  128 => 61,  124 => 60,  110 => 48,  104 => 45,  88 => 31,  86 => 30,  69 => 17,  67 => 16,  58 => 10,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -294,7 +294,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <ul class=\"navbar-nav mr-auto\">
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>
+                        <a class=\"nav-link\" href=\"/store/book\">Home <span class=\"sr-only\">(current)</span></a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"/store/book\">Books</a>
@@ -321,9 +321,9 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
                     </li> -->
                 </ul>
                 <span class=\"form-inline my-2 my-lg-0\">
-                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                     <a class=\"nav-link active\" href=\"{{ path('cart_index') }}\">Cart 
                         <span class=\"badge\">\${{ not app.session.get('totalPrice') ? \"0\" : app.session.get('totalPrice') }}</span></a>
+                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                 </span>
             {% endif %}
         </div>

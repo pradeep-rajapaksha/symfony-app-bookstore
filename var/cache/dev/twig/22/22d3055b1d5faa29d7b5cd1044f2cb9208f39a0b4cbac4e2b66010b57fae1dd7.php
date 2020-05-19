@@ -83,41 +83,44 @@ class __TwigTemplate_658086bce9b2010d98cc51698370775c73e40ef3bcc0d5b901c50ca6da2
         }
         // line 11
         echo "
-    <form action=\"";
-        // line 12
+    <div class=\"row justify-content-md-center\">
+        <div class=\"col-4\">
+            <form action=\"";
+        // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
         echo "\" method=\"post\" class=\"form-signin\">
-        <div class=\"text-center mb-4\">
-            <!-- <img class=\"mb-4\" src=\"https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg\" alt=\"\" width=\"72\" height=\"72\"> -->
-            <!-- <h1 class=\"h3 mb-3 font-weight-normal\">Floating labels</h1> -->
-            <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href=\"https://caniuse.com/#feat=css-placeholder-shown\">Works in latest Chrome, Safari, and Firefox.</a></p> -->
-        </div>
-
-        <div class=\"form-label-group form-group\">
-            <!-- <label for=\"username\">Email address</label> -->
-            <input type=\"email\" name=\"_username\" id=\"username\" class=\"form-control\" value=\"";
-        // line 21
-        echo twig_escape_filter($this->env, (isset($context["username"]) || array_key_exists("username", $context) ? $context["username"] : (function () { throw new RuntimeError('Variable "username" does not exist.', 21, $this->source); })()), "html", null, true);
-        echo "\" placeholder=\"Email address\" required autofocus>
-        </div>
-
-        <div class=\"form-label-group form-group\">
-            <!-- <label for=\"password\">Password</label> -->
-            <input type=\"password\" name=\"_password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>
-        </div>
-
-        <div class=\"checkbox mb-3\">
-            <label>
-                <input type=\"checkbox\" value=\"remember-me\"> Remember me
-            </label>
-        </div>
+                <div class=\"text-center mb-4\">
+                    <!-- <img class=\"mb-4\" src=\"https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg\" alt=\"\" width=\"72\" height=\"72\"> -->
+                    <!-- <h1 class=\"h3 mb-3 font-weight-normal\">Floating labels</h1> -->
+                    <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href=\"https://caniuse.com/#feat=css-placeholder-shown\">Works in latest Chrome, Safari, and Firefox.</a></p> -->
+                </div>
         
-        ";
-        // line 40
-        echo "
-        <button class=\"btn btn-md btn-primary btn-block\" type=\"submit\">Sign in</button>
-        <!-- <p class=\"mt-5 mb-3 text-muted text-center\">&copy; 2017-2018</p> -->
-    </form>
+                <div class=\"form-label-group form-group\">
+                    <!-- <label for=\"username\">Email address</label> -->
+                    <input type=\"email\" name=\"_username\" id=\"username\" class=\"form-control\" value=\"";
+        // line 23
+        echo twig_escape_filter($this->env, (isset($context["username"]) || array_key_exists("username", $context) ? $context["username"] : (function () { throw new RuntimeError('Variable "username" does not exist.', 23, $this->source); })()), "html", null, true);
+        echo "\" placeholder=\"Email address\" required autofocus>
+                </div>
+        
+                <div class=\"form-label-group form-group\">
+                    <!-- <label for=\"password\">Password</label> -->
+                    <input type=\"password\" name=\"_password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>
+                </div>
+        
+                <div class=\"checkbox mb-3\">
+                    <label>
+                        <input type=\"checkbox\" value=\"remember-me\"> Remember me
+                    </label>
+                </div>
+                
+                <input type=\"hidden\" name=\"_target_path\" value=\"/store/book\"/>
+        
+                <button class=\"btn btn-md btn-primary btn-block\" type=\"submit\">Sign in</button>
+                <!-- <p class=\"mt-5 mb-3 text-muted text-center\">&copy; 2017-2018</p> -->
+            </form>
+        </div>
+    </div>
 
 ";
         
@@ -140,7 +143,7 @@ class __TwigTemplate_658086bce9b2010d98cc51698370775c73e40ef3bcc0d5b901c50ca6da2
 
     public function getDebugInfo()
     {
-        return array (  117 => 40,  100 => 21,  88 => 12,  85 => 11,  79 => 9,  77 => 8,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  102 => 23,  90 => 14,  85 => 11,  79 => 9,  77 => 8,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -156,38 +159,38 @@ class __TwigTemplate_658086bce9b2010d98cc51698370775c73e40ef3bcc0d5b901c50ca6da2
         <div class=\"alert alert-danger\">{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action=\"{{ path('login') }}\" method=\"post\" class=\"form-signin\">
-        <div class=\"text-center mb-4\">
-            <!-- <img class=\"mb-4\" src=\"https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg\" alt=\"\" width=\"72\" height=\"72\"> -->
-            <!-- <h1 class=\"h3 mb-3 font-weight-normal\">Floating labels</h1> -->
-            <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href=\"https://caniuse.com/#feat=css-placeholder-shown\">Works in latest Chrome, Safari, and Firefox.</a></p> -->
-        </div>
-
-        <div class=\"form-label-group form-group\">
-            <!-- <label for=\"username\">Email address</label> -->
-            <input type=\"email\" name=\"_username\" id=\"username\" class=\"form-control\" value=\"{{ username }}\" placeholder=\"Email address\" required autofocus>
-        </div>
-
-        <div class=\"form-label-group form-group\">
-            <!-- <label for=\"password\">Password</label> -->
-            <input type=\"password\" name=\"_password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>
-        </div>
-
-        <div class=\"checkbox mb-3\">
-            <label>
-                <input type=\"checkbox\" value=\"remember-me\"> Remember me
-            </label>
-        </div>
+    <div class=\"row justify-content-md-center\">
+        <div class=\"col-4\">
+            <form action=\"{{ path('login') }}\" method=\"post\" class=\"form-signin\">
+                <div class=\"text-center mb-4\">
+                    <!-- <img class=\"mb-4\" src=\"https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg\" alt=\"\" width=\"72\" height=\"72\"> -->
+                    <!-- <h1 class=\"h3 mb-3 font-weight-normal\">Floating labels</h1> -->
+                    <!-- <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href=\"https://caniuse.com/#feat=css-placeholder-shown\">Works in latest Chrome, Safari, and Firefox.</a></p> -->
+                </div>
         
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type=\"hidden\" name=\"_target_path\" value=\"/account\"/>
-        #}
-
-        <button class=\"btn btn-md btn-primary btn-block\" type=\"submit\">Sign in</button>
-        <!-- <p class=\"mt-5 mb-3 text-muted text-center\">&copy; 2017-2018</p> -->
-    </form>
+                <div class=\"form-label-group form-group\">
+                    <!-- <label for=\"username\">Email address</label> -->
+                    <input type=\"email\" name=\"_username\" id=\"username\" class=\"form-control\" value=\"{{ username }}\" placeholder=\"Email address\" required autofocus>
+                </div>
+        
+                <div class=\"form-label-group form-group\">
+                    <!-- <label for=\"password\">Password</label> -->
+                    <input type=\"password\" name=\"_password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>
+                </div>
+        
+                <div class=\"checkbox mb-3\">
+                    <label>
+                        <input type=\"checkbox\" value=\"remember-me\"> Remember me
+                    </label>
+                </div>
+                
+                <input type=\"hidden\" name=\"_target_path\" value=\"/store/book\"/>
+        
+                <button class=\"btn btn-md btn-primary btn-block\" type=\"submit\">Sign in</button>
+                <!-- <p class=\"mt-5 mb-3 text-muted text-center\">&copy; 2017-2018</p> -->
+            </form>
+        </div>
+    </div>
 
 {% endblock %}", "BookstoreDefaultBundle:Security:login.html.twig", "/var/www/html/_bookstore/src/Bookstore/DefaultBundle/Resources/views/Security/login.html.twig");
     }

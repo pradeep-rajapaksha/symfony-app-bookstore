@@ -2322,14 +2322,14 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id="security.request_matcher.2jd_drb"/>
+        <argument type="service" id="security.request_matcher.9qvssv0"/>
         <argument type="collection">
           <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.9qvssv0"/>
+        <argument type="service" id="security.request_matcher.2jd_drb"/>
         <argument type="collection">
           <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
         </argument>
@@ -2832,11 +2832,11 @@
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
     </service>
-    <service id="security.request_matcher.2jd_drb" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/</argument>
-    </service>
     <service id="security.request_matcher.9qvssv0" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>login</argument>
+    </service>
+    <service id="security.request_matcher.2jd_drb" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/</argument>
     </service>
     <service id="security.request_matcher.cgivioz" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/store/</argument>

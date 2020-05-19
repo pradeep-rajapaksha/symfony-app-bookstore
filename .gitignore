@@ -3,4 +3,5 @@ vendor
 .vscode
 modules/.vscode
 var
+var/cache
 .phpunit*
