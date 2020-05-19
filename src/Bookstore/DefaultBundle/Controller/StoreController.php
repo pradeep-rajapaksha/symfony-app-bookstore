@@ -54,4 +54,29 @@ class StoreController extends Controller
             'entity'      => $entity,
         );
     }
+
+        /**
+     * Finds and displays a Book entity.
+     *
+     * @Route("/category/{id}", name="show_by_category")
+     * @Method("GET")
+     * @Template("@BookstoreDefault/Store/index.html.twig")
+     */
+    public function showByCategoryAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $books = $em->getRepository('BookstoreDefaultBundle:Book')->findBy(array('category_id' => $id));
+        $categories = $em->getRepository('BookstoreDefaultBundle:Category')->findBy(array('status' => 'active'));
+
+        if (!$books) {
+            throw $this->createNotFoundException('Unable to find Book entity.');
+        }
+
+        return array(
+            'books' => $books,
+            'categories' => $categories,
+        );
+    }
+
 }

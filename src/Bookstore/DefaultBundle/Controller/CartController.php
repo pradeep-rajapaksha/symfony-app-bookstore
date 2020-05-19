@@ -12,11 +12,16 @@ use Bookstore\DefaultBundle\Entity\Book;
 use Bookstore\DefaultBundle\Entity\OrderBook;
 use Bookstore\DefaultBundle\Entity\Order;
 use Bookstore\DefaultBundle\Entity\User;
+use Bookstore\DefaultBundle\Entity\Customer;
+use Bookstore\DefaultBundle\Entity\CreateOrderRequest;
 use Bookstore\DefaultBundle\Utils\Cart;
 use Bookstore\DefaultBundle\Utils\CartItem;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Attribute\NamespacedAttributeBag;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
+use Psr\Log\LoggerInterface;
+use Bookstore\DefaultBundle\Form\ShippingDetailsType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CartController extends Controller
 {
@@ -125,69 +130,132 @@ class CartController extends Controller
     }
 
     /**
-     * Checkout: summery page - Lists all Cart items and show shipping address form.
+     * Checkout process of the cart
      *
      * @Route("/cart/checkout", name="cart_checkout")
-     * @Method("GET")
      * @Template("@BookstoreDefault/Store/checkout.html.twig")
      */
-    public function showCheckOutAction()
+    public function checkOutAction(Request $request)
     {
-        $cart = $this->cart->getItems();
 
-        return array('cart' => $cart);
+        $cartItems = $this->cart->getItems();
+        $cartNetTotal = $this->cart->getTotal();
+        $cartTotal = $this->cart->getDiscountTotal();
+        $discount = $this->cart->getAppliedDiscount();
+
+        // create an instance of an empty CreateOrderRequest
+        $createOrderRequest = new CreateOrderRequest();
+
+        // create a form but with a request object instead of entity
+        $form = $this->createForm(ShippingDetailsType::class, $createOrderRequest);
+        $form->add('submit', SubmitType::class, array('label' => 'Pay', 'attr' => array('class' => 'btn btn-success btn-block mt-2')));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {   
+            $em = $this->getDoctrine()->getManager();
+            
+            $email = $createOrderRequest->email;
+            $customer = $em->getRepository(Customer::class)->findOneBy(['email' => $email]); 
+
+            if ($customer) {
+                echo 'customer found!';
+            }
+            
+            try
+            {
+                $name = $createOrderRequest->name;
+                $email = $createOrderRequest->email;
+                $contact = $createOrderRequest->contact;
+                $address1 = $createOrderRequest->address1;
+                $address2 = $createOrderRequest->address2;
+                $postcode = $createOrderRequest->postcode;
+                $suburb = $createOrderRequest->suburb;
+                $state = $createOrderRequest->state;
+                // 
+                if (null == $customer) {
+                    $customer = new Customer();
+                    $customer->setName($name);
+                    $customer->setEmail($email);
+                    $customer->setContact($contact);
+                    
+                    $em->persist($customer);
+                    $em->flush();
+                }
+                
+                $order = new Order();
+                $order->setCustomerId($customer->getId());
+                $order->setTotal($cartTotal);
+                $order->setOrderedAt(new \DateTime());
+                $order->setAddress1($address1);
+                $order->setAddress2($address2);
+                $order->setPostcode($postcode);
+                $order->setSuburb($suburb);
+                $order->setState($state);
+                // var_dump($order->getState()); exit;
+
+                $em->persist($order);
+                $em->flush();
+                
+                foreach ($this->cart->getItems() as $item) {
+                    $orderBook = new OrderBook();
+                    $orderBook->setBookId($item->getId());
+                    $orderBook->setOrderId($order->getId());
+                    $orderBook->setQty($item->getQuantity());
+                    $orderBook->setPrice($item->getPrice());
+                    $orderBook->setTotal($item->getTotal());
+                    
+                    $em->persist($orderBook);
+                    $em->flush();
+                }
+                // 
+                $this->addFlash('success', 'Order completed.');
+                
+                $returnData = array(
+                    'cart' => $cartItems,
+                    'orderId' => $order->getId(),
+                    'netTotal' => $cartNetTotal,
+                    'total' => $cartTotal,
+                    'discount'=> $discount,
+                );
+                return $this->redirect($this->generateUrl('cart_invoice', $returnData));
+            }
+            catch (\Exception $exception) {
+                // 
+                // var_dump('>>>>> exception'); 
+                $this->addFlash('danger', 'Error');
+            }
+        }
+
+        return array(
+            'form'   => $form->createView(),
+            'cart' => $cartItems,
+            'discount' => $discount,
+            'netTotal' => $cartNetTotal,
+        );
     }
 
     /**
      * Checkout process of the cart
      *
-     * @Route("/cart/purchase", name="cart_purchase")
+     * @Route("/cart/invoice", name="cart_invoice")
      * @Template("@BookstoreDefault/Store/invoice.html.twig")
      */
-    public function checkOutAction()
+    public function invoiceAction(Request $request)
     {
         $cartItems = $this->cart->getItems();
         $cartNetTotal = $this->cart->getTotal();
         $cartTotal = $this->cart->getDiscountTotal();
         $discount = $this->cart->getAppliedDiscount();
 
-        $em = $this->getDoctrine()->getManager();
-        // $firstUser = $em->getRepository(User::class)->findOneBy([]); 
+        $order = $request->query->get('orderId', '');
 
-        $order = new Order();
-
-        try {
-            // $address1
-            // $address2
-            // $postcode
-            // $suburb
-            // $state
-
-            $order->setUserId($firstUser->getId());
-            $order->setTotal($cartTotal);
-            $order->setOrderedAt(new \DateTime());
-            $em->persist($order);
-            $em->flush();
-
-            foreach ($this->cart->getItems() as $item) {
-                $orderBook = new OrderBook();
-                $orderBook->setQty($item->getQuantity());
-                $orderBook->setOrderId($order->getId());
-                $orderBook->setBookId($item->getId());
-                $orderBook->setTotal($item->getTotal());
-                $em->persist($orderBook);
-                $em->flush();
-            }
-
-            $this->addFlash('success', 'Checkout completed. Your order will be shipped soon.');
-            $this->cart->clear();
-        } catch (\Exception $exception) {
-            $this->addFlash('danger', 'Error'); // need to log the exception details
-        }
+        // clear the cart when invoice printed
+        $this->cart->clear();
 
         return array(
             'cart' => $cartItems,
-            'orderId' => $order->getId(),
+            'orderId' => str_pad($order, 4, '0', STR_PAD_LEFT),
             'netTotal' => $cartNetTotal,
             'total' => $cartTotal,
             'discount'=> $discount,

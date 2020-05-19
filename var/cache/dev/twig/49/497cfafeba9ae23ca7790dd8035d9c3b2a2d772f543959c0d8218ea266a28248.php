@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* base.html.twig */
+/* ::base.html.twig */
 class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7b5b7e extends \Twig\Template
 {
     private $source;
@@ -38,10 +38,10 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "base.html.twig"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "::base.html.twig"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "base.html.twig"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "::base.html.twig"));
 
         // line 1
         echo "<!doctype html>
@@ -119,7 +119,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
                     </li> -->
                 </ul>
                 <span class=\"form-inline my-2 my-lg-0\">
-                    <!-- <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a> -->
+                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                     <a class=\"nav-link active\" href=\"";
             // line 61
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_index");
@@ -247,7 +247,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
 
     public function getTemplateName()
     {
-        return "base.html.twig";
+        return "::base.html.twig";
     }
 
     public function isTraitable()
@@ -321,7 +321,7 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
                     </li> -->
                 </ul>
                 <span class=\"form-inline my-2 my-lg-0\">
-                    <!-- <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a> -->
+                    <a href=\"/store/login\" class=\"btn btn-link my-2 my-sm-0\">Login</a>
                     <a class=\"nav-link active\" href=\"{{ path('cart_index') }}\">Cart 
                         <span class=\"badge\">\${{ not app.session.get('totalPrice') ? \"0\" : app.session.get('totalPrice') }}</span></a>
                 </span>
@@ -351,6 +351,6 @@ class __TwigTemplate_35a3729ad39ec5207c59a3ee22db5a8864f6bba9aa175587e057465ffc7
 
 </body>
 
-</html>", "base.html.twig", "/var/www/html/_bookstore/app/Resources/views/base.html.twig");
+</html>", "::base.html.twig", "/var/www/html/_bookstore/app/Resources/views/base.html.twig");
     }
 }

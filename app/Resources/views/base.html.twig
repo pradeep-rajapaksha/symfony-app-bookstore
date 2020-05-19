@@ -57,9 +57,9 @@
                     </li> -->
                 </ul>
                 <span class="form-inline my-2 my-lg-0">
-                    <!-- <a href="/store/login" class="btn btn-link my-2 my-sm-0">Login</a> -->
                     <a class="nav-link active" href="{{ path('cart_index') }}">Cart 
                         <span class="badge">${{ not app.session.get('totalPrice') ? "0" : app.session.get('totalPrice') }}</span></a>
+                    <a href="/store/login" class="btn btn-link my-2 my-sm-0">Login</a>
                 </span>
             {% endif %}
         </div>

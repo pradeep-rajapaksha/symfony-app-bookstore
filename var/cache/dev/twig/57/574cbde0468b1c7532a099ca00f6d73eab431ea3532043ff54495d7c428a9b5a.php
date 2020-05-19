@@ -93,70 +93,71 @@ class __TwigTemplate_f6d5ed2dc93a52558d5cea9927f3790c5ef00862fef94f41859ae24c89f
                 <div class=\"card-header bg-primary text-white text-uppercase\"><i class=\"fa fa-list\"></i> Categories
                 </div>
                 <ul class=\"list-group category_block\">
+                        <li class=\"list-group-item\"><a href=\"/\">All</a></li>
                     ";
-        // line 32
-        if ((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 32, $this->source); })())) {
-            // line 33
+        // line 33
+        if ((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 33, $this->source); })())) {
+            // line 34
             echo "                    ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 33, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["categories"]) || array_key_exists("categories", $context) ? $context["categories"] : (function () { throw new RuntimeError('Variable "categories" does not exist.', 34, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-                // line 34
+                // line 35
                 echo "                        <!-- <li class=\"list-group-item\"><a href=\"category.html\">Cras justo odio</a></li> -->
                         <li class=\"list-group-item\"><a href=\"/category/";
-                // line 35
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 35), "html", null, true);
+                // line 36
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "id", [], "any", false, false, false, 36), "html", null, true);
                 echo "\">";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 35), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 36), "html", null, true);
                 echo "</a></li>
                     ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['category'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 37
+            // line 38
             echo "                    ";
         }
-        // line 38
+        // line 39
         echo "                </ul>
             </div>
         </div>
         <div class=\"col\">
             <div class=\"row\">
                 ";
-        // line 43
+        // line 44
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 43, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 44, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["book"]) {
-            // line 44
+            // line 45
             echo "                    <div class=\"col-12 col-md-6 col-lg-4\">
                         <div class=\"card\">
                             <img class=\"card-img-top\" src=\"";
-            // line 46
+            // line 47
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("book-covers/book-cover-page-test.png"), "html", null, true);
             echo "\" alt=\"Card image cap\">
                             <div class=\"card-body\">
                                 <h4 class=\"card-title\"><a href=\"book/";
-            // line 48
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "id", [], "any", false, false, false, 48), "html", null, true);
+            // line 49
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "id", [], "any", false, false, false, 49), "html", null, true);
             echo "\" title=\"View Book\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 48), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 49), "html", null, true);
             echo "</a></h4>
                                 <p class=\"card-text\"><small>Author: ";
-            // line 49
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 49), "html", null, true);
+            // line 50
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 50), "html", null, true);
             echo "</small></p>
                                 <div class=\"row\">
                                     <div class=\"col align-self-start\">
                                         <p class=\"btn btn-danger btn-block\">";
-            // line 52
-            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "price", [], "any", false, false, false, 52), 2, ".", ","), "html", null, true);
+            // line 53
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["book"], "price", [], "any", false, false, false, 53), 2, ".", ","), "html", null, true);
             echo " \$</p>
                                     </div>
                                     <div class=\"col align-self-start\">
                                         <form action=\"";
-            // line 55
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => twig_get_attribute($this->env, $this->source, $context["book"], "id", [], "any", false, false, false, 55)]), "html", null, true);
+            // line 56
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => twig_get_attribute($this->env, $this->source, $context["book"], "id", [], "any", false, false, false, 56)]), "html", null, true);
             echo "\" method=\"POST\">
                                             <input type=\"hidden\" name=\"qty\" value=\"1\" />
                                             <button type=\"submit\" class=\"btn btn-block btn-success text-uppercase\"> <i
@@ -172,7 +173,7 @@ class __TwigTemplate_f6d5ed2dc93a52558d5cea9927f3790c5ef00862fef94f41859ae24c89f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['book'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 66
+        // line 67
         echo "                <!-- <div class=\"col-12\">
                     <nav aria-label=\"...\">
                         <ul class=\"pagination\">
@@ -217,7 +218,7 @@ class __TwigTemplate_f6d5ed2dc93a52558d5cea9927f3790c5ef00862fef94f41859ae24c89f
 
     public function getDebugInfo()
     {
-        return array (  176 => 66,  159 => 55,  153 => 52,  147 => 49,  141 => 48,  136 => 46,  132 => 44,  128 => 43,  121 => 38,  118 => 37,  108 => 35,  105 => 34,  100 => 33,  98 => 32,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  177 => 67,  160 => 56,  154 => 53,  148 => 50,  142 => 49,  137 => 47,  133 => 45,  129 => 44,  122 => 39,  119 => 38,  109 => 36,  106 => 35,  101 => 34,  99 => 33,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -253,6 +254,7 @@ class __TwigTemplate_f6d5ed2dc93a52558d5cea9927f3790c5ef00862fef94f41859ae24c89f
                 <div class=\"card-header bg-primary text-white text-uppercase\"><i class=\"fa fa-list\"></i> Categories
                 </div>
                 <ul class=\"list-group category_block\">
+                        <li class=\"list-group-item\"><a href=\"/\">All</a></li>
                     {% if(categories) %}
                     {% for category in categories %}
                         <!-- <li class=\"list-group-item\"><a href=\"category.html\">Cras justo odio</a></li> -->

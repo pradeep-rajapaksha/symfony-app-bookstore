@@ -352,22 +352,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             // cart_checkout
             if ('/cart/checkout' === $pathinfo) {
-                $ret = array (  '_controller' => 'Bookstore\\DefaultBundle\\Controller\\CartController::showCheckOutAction',  '_route' => 'cart_checkout',);
-                if (!in_array($canonicalMethod, ['GET'])) {
-                    $allow = array_merge($allow, ['GET']);
-                    goto not_cart_checkout;
-                }
-
-                return $ret;
+                return array (  '_controller' => 'Bookstore\\DefaultBundle\\Controller\\CartController::checkOutAction',  '_route' => 'cart_checkout',);
             }
-            not_cart_checkout:
 
-            // cart_purchase
-            if ('/cart/purchase' === $pathinfo) {
-                return array (  '_controller' => 'Bookstore\\DefaultBundle\\Controller\\CartController::checkOutAction',  '_route' => 'cart_purchase',);
+            // cart_invoice
+            if ('/cart/invoice' === $pathinfo) {
+                return array (  '_controller' => 'Bookstore\\DefaultBundle\\Controller\\CartController::invoiceAction',  '_route' => 'cart_invoice',);
             }
 
         }
+
+        // show_by_category
+        if (0 === strpos($pathinfo, '/category') && preg_match('#^/category/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'show_by_category']), array (  '_controller' => 'Bookstore\\DefaultBundle\\Controller\\StoreController::showByCategoryAction',));
+            if (!in_array($canonicalMethod, ['GET'])) {
+                $allow = array_merge($allow, ['GET']);
+                goto not_show_by_category;
+            }
+
+            return $ret;
+        }
+        not_show_by_category:
 
         // bookstore_default_default_index
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#sD', $pathinfo, $matches)) {

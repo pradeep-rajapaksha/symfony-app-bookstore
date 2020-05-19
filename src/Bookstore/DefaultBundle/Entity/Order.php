@@ -4,11 +4,12 @@ namespace Bookstore\DefaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Order
  *
- * @ORM\Table(name="order")
+ * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderRepository")
  */
 class Order
@@ -27,7 +28,7 @@ class Order
      *
      * @ORM\Column(name="customer_id", type="integer")
      */
-    private $customerId;
+    private $customer_id;
 
     /**
      * @var float
@@ -54,6 +55,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="address2", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $address2;
 
@@ -68,6 +70,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="suburb", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $suburb;
 
@@ -75,6 +78,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $state;
 
@@ -91,25 +95,25 @@ class Order
     /**
      * Set userId
      *
-     * @param integer $customerId
+     * @param integer $customer_id
      *
      * @return Order
      */
-    public function setUserId($customerId)
+    public function setCustomerId($customer_id)
     {
-        $this->userId = $customerId;
+        $this->customer_id = $customer_id;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Get customer_id
      *
      * @return int
      */
-    public function getUserId()
+    public function getCustomerId()
     {
-        return $this->userId;
+        return $this->customer_id;
     }
 
     /**
